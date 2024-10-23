@@ -6,4 +6,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  text-align: center;
+
+  &__text {
+    margin-bottom: 2rem;
+  }
+
+  &__home_link {
+    padding: 1rem 3rem;
+
+    color: #f1f1f1;
+    background-color: var(--green);
+
+    font-weight: 600;
+  }
 }
