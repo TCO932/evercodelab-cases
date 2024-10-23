@@ -47,6 +47,10 @@
     align-items: center;
     margin-bottom: 30px;
     gap: 15px;
+
+    li {
+      display: inherit;
+    }
   }
 
   &__menu-wrapper {
