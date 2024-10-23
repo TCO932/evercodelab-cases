@@ -1,0 +1,37 @@
+.cookie_banner_wrapper {
+  position: fixed;
+  bottom: 1rem;
+  z-index: 1000;
+
+  width: 100vw;
+}
+
+.cookie_banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1rem;
+  margin: 0 auto;
+  width: 80vw;
+  max-width: fit-content;
+  color: #f1f1f1;
+  background-color: var(--blue);
+  text-align: center;
+  line-height: normal;
+
+  &__text {
+    margin: 0;
+  }
+
+  &__button {
+    flex-basis: 200px;
+    max-width: 300px;
+    margin-left: 1rem;
+    margin-top: 0;
+    height: 48px;
+
+    color: inherit;
+    background-color: var(--green);
+  }
+}
