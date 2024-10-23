@@ -1,6 +1,7 @@
 import './Header.scss';
 import LogoImage from '../../assets/icons/logo-header.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const products = [
   {
@@ -42,8 +43,18 @@ const mobileMenuItems = [
 export default function Header() {
   const [menuShown, setMenuShown] = useState(false);
 
-  function menuClickHandler(e) {
-    setMenuShown(!menuShown);
+  function menuClickHandler() {
+    setMenuShown(prevMenuShown => {
+      const newMenuShown = !prevMenuShown;
+
+      if (newMenuShown) {
+        document.body.classList.add('body-fixed');
+      } else {
+        document.body.classList.remove('body-fixed');
+      }
+
+      return newMenuShown;
+    });
   }
 
   return (
@@ -82,6 +93,15 @@ export default function Header() {
           ))}
         </ul>
       </nav>
+
+      <ul className={'popup-mobile items-list' + (menuShown ? ' visible' : '')}>
+        {mobileMenuItems.map((item, index) => (
+          <li className='popup-mobile__item' key={index}>
+            <Link to={item.link}>{item.name}</Link>
+            {item.hasIcon && <span class='header__menu_item-icon'></span>}
+          </li>
+        ))}
+      </ul>
     </header>
   );
 }
