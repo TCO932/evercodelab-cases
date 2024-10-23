@@ -147,7 +147,7 @@ const Footer = () => {
           </Link>
           <div className='footer__info_item'>
             <a
-              href='/ru/Privacy/Privacy.pdf'
+              href='/Privacy/Privacy.pdf'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -156,7 +156,7 @@ const Footer = () => {
           </div>
           <div className='footer__info_item'>
             <a
-              href='/ru/Termsofuse/TermsofUse.pdf'
+              href='/Termsofuse/TermsofUse.pdf'
               target='_blank'
               rel='noopener noreferrer'
             >

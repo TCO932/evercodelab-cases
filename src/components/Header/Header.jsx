@@ -8,43 +8,43 @@ const products = [
     name: 'Everchain White Label Wallet',
     link: 'https://wallet.evercodelab.com/',
   },
-  { name: 'Evervault', link: '/ru/products/evervault' },
-  { name: 'EverCourse', link: '/ru/products/evercourse' },
-  { name: 'Evercode Online Medic', link: '/ru/products/evercode-online-medic' },
-  { name: 'Marketplace Evermarket', link: '/ru/products/evermarket' },
-  { name: 'Everchain SDK', link: '/ru/products/everchain-sdk' },
+  { name: 'Evervault', link: '/products/evervault' },
+  { name: 'EverCourse', link: '/products/evercourse' },
+  { name: 'Evercode Online Medic', link: '/products/evercode-online-medic' },
+  { name: 'Marketplace Evermarket', link: '/products/evermarket' },
+  { name: 'Everchain SDK', link: '/products/everchain-sdk' },
 ];
 
 const cases = [
-  { name: 'CRM решения', link: '/ru/cases/cadfem-version-2' },
-  { name: 'Системы мониторинга', link: '/ru/cases/escar' },
-  { name: 'Электронная коммерция', link: '/ru/cases/foodfox' },
-  { name: 'Медицина', link: '/ru/cases/ondoc' },
-  { name: 'Образование', link: '/ru/cases/ball' },
+  { name: 'CRM решения', link: '/cases/cadfem-version-2' },
+  { name: 'Системы мониторинга', link: '/cases/escar' },
+  { name: 'Электронная коммерция', link: '/cases/foodfox' },
+  { name: 'Медицина', link: '/cases/ondoc' },
+  { name: 'Образование', link: '/cases/ball' },
 ];
 
 const menuItems = [
   { name: 'Продукты', link: '/products', subMenu: products },
   { name: 'Кейсы', link: '/cases', subMenu: cases },
   { name: 'Карьера', link: '/career' },
-  { name: 'Блок', link: '/blog' },
+  { name: 'Блог', link: 'https://evercodelab.com/blog/ru/' },
   { name: 'Контакты', link: '/contacts' },
 ];
 
 const mobileMenuItems = [
-  { name: 'Домой', link: '/ru/' },
-  { name: 'Продукты', link: '/ru/products/' },
-  { name: 'Кейсы', link: '/ru/cases/' },
-  { name: 'Карьера', link: '/ru/career/' },
+  { name: 'Домой', link: '/' },
+  { name: 'Продукты', link: '/products/' },
+  { name: 'Кейсы', link: '/cases/' },
+  { name: 'Карьера', link: '/career/' },
   { name: 'Блог', link: 'https://evercodelab.com/blog/ru', hasIcon: true },
-  { name: 'Контакты', link: '/ru/contacts' },
+  { name: 'Контакты', link: '/contacts' },
 ];
 
 export default function Header() {
   const [menuShown, setMenuShown] = useState(false);
 
   function menuClickHandler() {
-    setMenuShown(prevMenuShown => {
+    setMenuShown((prevMenuShown) => {
       const newMenuShown = !prevMenuShown;
 
       if (newMenuShown) {
@@ -60,9 +60,9 @@ export default function Header() {
   return (
     <header className='header'>
       <nav className='header__wrapper container'>
-        <a href='/' className='header__logo'>
+        <Link to='/' className='header__logo'>
           <img src={LogoImage} alt='Evercode Lab' />
-        </a>
+        </Link>
         <button
           onClick={menuClickHandler}
           className={'header__menubar' + (menuShown ? ' burger-close' : '')}
@@ -77,14 +77,14 @@ export default function Header() {
                 (item.subMenu ? ' header__menu_relative' : '')
               }
             >
-              <a className='header__menu-link' href={item.link}>
+              <Link className='header__menu-link' to={item.link}>
                 <span>{item.name}</span>
-              </a>
+              </Link>
               {item.subMenu && (
                 <ul className='header__popup-menu'>
                   {item.subMenu.map((subItem, subIndex) => (
                     <li key={subIndex} className='popup-menu__item'>
-                      <a href={subItem.link}>{subItem.name}</a>
+                      <Link to={subItem.link}>{subItem.name}</Link>
                     </li>
                   ))}
                 </ul>
