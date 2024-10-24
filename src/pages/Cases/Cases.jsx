@@ -1,7 +1,12 @@
 import './Cases.scss';
+import ContactUs from '../../components/ContactUs';
 
 const Cases = () => {
-  return <div className='cases'>Cases</div>;
+  return (
+    <>
+      <ContactUs></ContactUs>
+    </>
+  );
 };
 
 export default Cases;
