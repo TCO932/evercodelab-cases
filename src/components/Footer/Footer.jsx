@@ -57,13 +57,11 @@ const Footer = () => {
   const menuRef = useRef(null);
 
   function menuClickHandler(e) {
-    setMenuShown(!menuShown);
-
-    if (menuShown) {
-      setMenuHeight(menuRef.current.scrollHeight);
-    } else {
-      setMenuHeight(0);
-    }
+    setMenuShown(prevMenuShown => {
+      const newMenuShown = !prevMenuShown;
+      setMenuHeight(newMenuShown ? menuRef.current.scrollHeight : 0);
+      return newMenuShown;
+    });
   }
 
   return (
