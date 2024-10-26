@@ -1,8 +1,67 @@
 import { useState } from 'react';
 import './ContactUs.scss';
+import PopUpCheckSvg from '../../assets/icons/popup-check.svg';
 
-const ContactUs = () => {
+const ContactUs = ({ id }) => {
   const [popUpShown, setPopUpShown] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    message: '',
+    consent: false,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!formData.name) newErrors.name = 'Имя обязательно';
+    if (!formData.email) {
+      newErrors.email = 'Email обязателен';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Введите корректный email';
+    }
+    if (!formData.consent) newErrors.consent = 'Необходимо согласие';
+    console.log(newErrors);
+    return newErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      console.log('Данные формы:', formData);
+
+      setFormData({
+        name: '',
+        email: '',
+        phoneNumber: '',
+        message: '',
+        consent: false,
+      });
+      setErrors({});
+
+      setFormSuccess(true);
+      setTimeout(() => {
+        setFormSuccess(false);
+        hidePopUp();
+      }, 5000);
+    }
+  };
 
   function showPopUp(e) {
     setPopUpShown(true);
@@ -13,7 +72,7 @@ const ContactUs = () => {
   }
 
   return (
-    <section className='contact-section'>
+    <section id={id} className='contact-section'>
       <div className='container'>
         <div className='contact-section__wrapper'>
           <div className='contact-section__title cases__section-title'>
@@ -33,71 +92,115 @@ const ContactUs = () => {
         style={{ display: popUpShown ? 'block' : 'none' }}
         onClick={hidePopUp}
       >
-        <div className='pop-up-contact__box' onClick={(e) => e.stopPropagation()}>
+        <div
+          className='pop-up-contact__box'
+          onClick={(e) => e.stopPropagation()}
+        >
           <button
             className='pop-up-contact__close-btn'
             type='button'
             onClick={hidePopUp}
+            aria-label='Закрыть форму'
           />
           <div className='pop-up-contact__title'>Напишите нам</div>
-          <form id='pop-up-contact-form'>
-            <input
-              className='pop-up-contact__input popup-sendback__name'
-              type='text'
-              name='name'
-              placeholder='Имя'
-              required=''
-            />
-            <label className='popup-sendback__box'>
+          <form
+            id='pop-up-contact-form'
+            className={formSuccess ? 'pop-up-contact-form--submit' : ''}
+            onSubmit={handleSubmit}
+          >
+            <label
+              className={
+                'popup-sendback__box' +
+                (errors.name ? ' popup-input-warning' : '')
+              }
+            >
+              <input
+                className='pop-up-contact__input popup-sendback__name'
+                type='text'
+                name='name'
+                placeholder='Имя'
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              {errors.name && <span className='error'>{errors.name}</span>}
+            </label>
+
+            <label
+              className={
+                'popup-sendback__box' +
+                (errors.email ? ' popup-input-warning' : '')
+              }
+            >
               <input
                 className='pop-up-contact__input popup-sendback__email'
                 type='email'
                 name='email'
                 placeholder='Email'
-                required=''
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
-              <span>Обязательное поле</span>
+              {errors.email && <span className='error'>{errors.email}</span>}
             </label>
-            <input
-              className='pop-up-contact__input popup-sendback__phone'
-              type='tel'
-              name='phoneNumber'
-              placeholder='Телефон (необязательно)'
-            />
+
+            <label className='popup-sendback__box'>
+              <input
+                className='pop-up-contact__input popup-sendback__phone'
+                type='tel'
+                name='phoneNumber'
+                placeholder='Телефон (необязательно)'
+                value={formData.phoneNumber}
+                onChange={handleChange}
+              />
+            </label>
+
             <label className='popup-sendback__box'>
               <textarea
                 className='pop-up-contact__textarea popup-sendback__text'
-                type='text'
                 name='message'
                 placeholder='Текст сообщения (необязательно)'
-                defaultValue={''}
+                value={formData.message}
+                onChange={handleChange}
               />
-              <span>Обязательное поле</span>
             </label>
+
             <div className='checkboxWrapper'>
-              <input type='checkbox' className='checkbox' required='' />
-              <p className='checkboxText'>
+              <input
+                type='checkbox'
+                className='checkbox'
+                name='consent'
+                checked={formData.consent}
+                onChange={handleChange}
+                required
+                aria-labelledby='checkboxText'
+              />
+              <span id='checkboxText' className='checkboxText'>
                 Я прочитал(а) и ознакомлен(а) с
                 <a
                   className='checkboxLink'
                   target='_blank'
                   rel='noreferrer'
-                  href='/ru/Privacy/Privacy.pdf'
+                  href='/Privacy/Privacy.pdf'
                 >
-                  Политикой конфидециальности
+                  {' Политикой конфиденциальности '}
                 </a>
                 и
                 <a
                   className='checkboxLink'
                   target='_blank'
                   rel='noreferrer'
-                  href='/ru/Termsofuse/TermsofUse.pdf'
+                  href='/Termsofuse/TermsofUse.pdf'
                 >
-                  Правилами использования сайта
+                  {' Правилами использования сайта'}
                 </a>
                 .
-              </p>
+              </span>
+              {errors.consent && (
+                <span className='error'>{errors.consent}</span>
+              )}
             </div>
+
             <div id='google-captcha'>
               <div style={{ width: 304, height: 78 }}>
                 <div>
@@ -131,19 +234,22 @@ const ContactUs = () => {
               </div>
               <iframe style={{ display: 'none' }} />
             </div>
+
             <button
               className='pop-up-contact__send-btn contact-btn'
               type='submit'
-              disabled=''
             >
               Отправить
             </button>
           </form>
-          <div className='pop-up-success'>
+          <div
+            className='pop-up-success'
+            style={{ display: formSuccess ? 'block' : 'none' }}
+          >
             <img
               className='pop-up-success__check'
-              src='/ru/img/icons/popup-check.svg'
-              alt='Evercode labs'
+              src={PopUpCheckSvg}
+              alt='Успех'
             />
             <p className='pop-up-success__text'>
               Ваше сообщение было успешно отправлено.
