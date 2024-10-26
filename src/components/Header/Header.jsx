@@ -27,7 +27,7 @@ const menuItems = [
   { name: 'Продукты', link: '/products', subMenu: products },
   { name: 'Кейсы', link: '/cases', subMenu: cases },
   { name: 'Карьера', link: '/career' },
-  { name: 'Блог', link: 'https://evercodelab.com/blog/ru/' },
+  { name: 'Блог', link: 'https://evercodelab.com/blog/ru/', hasIcon: true },
   { name: 'Контакты', link: '/contacts' },
 ];
 
@@ -43,7 +43,7 @@ const mobileMenuItems = [
 export default function Header() {
   const [menuShown, setMenuShown] = useState(false);
 
-  function menuClickHandler() {
+  function menuToggle() {
     setMenuShown((prevMenuShown) => {
       const newMenuShown = !prevMenuShown;
 
@@ -64,9 +64,10 @@ export default function Header() {
           <img src={LogoImage} alt='Evercode Lab' />
         </Link>
         <button
-          onClick={menuClickHandler}
+          onClick={menuToggle}
           className={'header__menubar' + (menuShown ? ' burger-close' : '')}
           type='button'
+          aria-label={menuShown ? 'Закрыть меню' : 'Открыть меню'}
         ></button>
         <ul className='header__menu'>
           {menuItems.map((item, index) => (
@@ -79,6 +80,7 @@ export default function Header() {
             >
               <Link className='header__menu-link' to={item.link}>
                 <span>{item.name}</span>
+                {item.hasIcon && <span className='header__menu_item-icon'></span>}
               </Link>
               {item.subMenu && (
                 <ul className='header__popup-menu'>
@@ -97,8 +99,10 @@ export default function Header() {
       <ul className={'popup-mobile items-list' + (menuShown ? ' visible' : '')}>
         {mobileMenuItems.map((item, index) => (
           <li className='popup-mobile__item' key={index}>
-            <Link to={item.link}>{item.name}</Link>
-            {item.hasIcon && <span class='header__menu_item-icon'></span>}
+            <Link onClick={menuToggle} to={item.link}>
+              {item.name}
+              {item.hasIcon && <span className='header__menu_item-icon'></span>}
+            </Link>
           </li>
         ))}
       </ul>
