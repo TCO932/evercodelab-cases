@@ -184,26 +184,27 @@
     width: 100%;
     border-bottom: 2px solid #4862b1;
     font-size: 16px;
-    font-family: interregular;
+    font-family: 'Inter', serif;
     outline: none;
     -webkit-appearance: none;
     padding: 0;
     border-radius: 0;
   }
 
-  &__input {
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-
   &__input::placeholder,
   &__textarea::placeholder {
     font-size: 16px;
+    color: #a4acc6;
   }
 
   &__input:focus,
   &__textarea:focus {
     border-bottom: 2px solid #8ac249;
+  }
+
+  &__input {
+    padding-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   &__textarea {
