@@ -8,9 +8,18 @@ import MedicineImage from '../../assets/cases-front/Medicine/Medicine.png';
 import MedicineImageSet from '../../assets/cases-front/Medicine/Medicine.svg';
 import EducationImage from '../../assets/cases-front/Education/Education.png';
 import EducationImageSet from '../../assets/cases-front/Education/Education.svg';
-import './Cases.scss';
+
 import ContactUs from '../../components/ContactUs';
 import Front from '../../components/Front/Front';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import './Cases.scss';
+import { Link } from 'react-router-dom';
 
 const Cases = () => {
   const casesData = [
@@ -53,61 +62,51 @@ const Cases = () => {
 
   return (
     <>
-      <Front nextId={'contact-section'}></Front>
+      <Front nextId={'contact-section'} />
 
       <section className='cases-list' id='contact-section'>
         <div className='container'>
-          <div className='cases-list__title'>Области Разработки</div>
-          <div className='cases-list__slider'>
-            <div
-              className='swiper-container cases-swiper swiper-container-initialized swiper-container-horizontal swiper-container-android'
-              id='cases-slider'
-              style={{ overflow: 'initial' }}
+          <h2 className='cases-list__title'>Области Разработки</h2>
+          <div className='cases-list__swiper'>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              spaceBetween={20}
+              navigation
+              loop
+              pagination={{ clickable: true }}
+              breakpoints={{
+                768: {
+                  slidesPerView: 3,
+                },
+              }}
             >
-              <div
-                className='swiper-wrapper'
-                style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}
-              >
-                {casesData.map((caseItem, index) => (
-                  <a
-                    key={index}
-                    href={caseItem.href}
-                    className='cases-card swiper-slide'
-                  >
-                    <div className='cases-card__wrapper'>
-                      <picture>
-                        <source
-                          type='image/svg+xml'
-                          media='(-webkit-min-device-pixel-ratio: 2)'
-                          srcSet={caseItem.imageSrcSet}
-                        />
-                        <img
-                          src={caseItem.imageSrc}
-                          alt='Evercode Lab'
-                          className='cases-card__image'
-                        />
-                      </picture>
-                      <div className='cases-card__name'>{caseItem.name}</div>
-                      <div className='cases-pagination' />
-                      <div className='cases-card__text'>{caseItem.text}</div>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className='slider__controls' style={{ display: 'none' }}>
-              <div className='slider__control cases-list__control--left slider__control--left'>
-                <div className='slider__control-image' />
-              </div>
-              <div className='slider__control cases-list__control--right slider__control--right'>
-                <div className='slider__control-image' />
-              </div>
-            </div>
+              {casesData.map((caseItem, index) => (
+                <SwiperSlide key={index} className='cases-card'>
+                  <Link to={caseItem.href} className='cases-card__wrapper'>
+                    <picture>
+                      <source
+                        type='image/svg+xml'
+                        media='(-webkit-min-device-pixel-ratio: 2)'
+                        srcSet={caseItem.imageSrcSet}
+                      />
+                      <img
+                        src={caseItem.imageSrc}
+                        alt={caseItem.name}
+                        className='cases-card__image'
+                      />
+                    </picture>
+                    <div className='cases-card__name'>{caseItem.name}</div>
+                    <div className='cases-card__text'>{caseItem.text}</div>
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       </section>
 
-      <ContactUs id={'contact-section'}></ContactUs>
+      <ContactUs id={'contact-section'} />
     </>
   );
 };

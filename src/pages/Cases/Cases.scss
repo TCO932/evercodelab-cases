@@ -1,160 +1,81 @@
-/* page cases front  */
-.front__image--cases {
-  background: transparent url(../../assets/cases-front/Cases.png) no-repeat
-    center;
-  background-size: contain;
-}
-@media screen and (min-width: 768px) {
-  .front__image--cases {
-    background: transparent url(../../assets/cases-front/Cases-big.png)
-      no-repeat center;
-    background-size: contain;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .front__image--cases {
-    background: transparent url(../../assets/cases-front/Cases.svg) no-repeat
-      center;
-    background-size: contain;
-  }
-}
-@media only screen and (min-device-pixel-ratio: 2) and (min-width: 1200px),
-  only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 1200px),
-  only screen and (-o-min-device-pixel-ratio: 2/1) and (min-width: 1200px),
-  only screen and (min-resolution: 192dpi) and (min-width: 1200px),
-  only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 1200px),
-  only screen and (-o-min-device-pixel-ratio: 2/1) and (min-width: 1200px),
-  only screen and (min-resolution: 2dppx) and (min-width: 1200px) {
-  .front__image--cases {
-    background: transparent url(../../assets/cases-front/Cases.svg) no-repeat
-      center;
-    background-size: contain;
-  }
-}
-
-/* experience */
-.experience-list__slider {
-  max-width: 340px;
-  margin: 20px auto -45px;
-  position: relative;
-}
-@media screen and (min-width: 768px) {
-  .experience-list__slider {
-    max-width: initial;
-    margin: 20px auto -130px;
-  }
-}
-
-/* cases-list */
 .cases-list {
-  background-color: #4862b1;
   background-color: var(--blue);
   padding-top: 10px;
+  margin-bottom: -40px;
+  box-sizing: border-box;
+
+  &__title {
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    color: #fff;
+    font-weight: 600;
+    font-size: 2.25rem;
+    text-align: center;
+
+    margin-bottom: 10px;
+  }
 }
-.cases-list__title {
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  color: #fff;
-  font-weight: 600;
-  font-size: 2.25rem;
-  text-align: center;
-}
-.cases-list__slider {
-  position: relative;
-  max-width: 340px;
-  margin: 20px auto -45px;
-}
-.cases-card__image {
-  width: 100%;
-  margin-top: 20px;
-}
+
 .cases-card {
-  color: #49598d;
   color: var(--paragraph);
   text-align: center;
-  height: 660px;
   cursor: pointer;
   text-decoration: none;
-}
-.cases-card__wrapper {
-  /* max-width: 290px; */
-  margin: 0 auto;
   background-color: #fff;
-  height: 100%;
-}
-.cases-card__text {
-  padding: 35px;
-}
-.cases-card__name {
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  font-weight: 500;
-  font-size: 1.25rem;
-  margin: 30px 40px 55px;
-  color: #1b3070;
-  color: var(--primary);
-  /* padding: 0 80px; */
-}
-.cases-card__text {
-  text-align: left;
-}
-.cases-list__control--left {
-  position: absolute;
-  left: -7px;
-  top: 50%;
-  margin-top: -24px;
-}
-.cases-list__control--right {
-  position: absolute;
-  right: -7px;
-  top: 50%;
-  margin-top: -24px;
-}
-.swiper-pagination {
-  margin-bottom: 24px;
-}
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-@media screen and (min-width: 768px) {
-  .cases-list {
-    padding-top: 60px;
+  height: initial;
+
+  &__image {
+    width: 100%;
+    margin-bottom: 20px;
+    object-fit: cover;
   }
-  .swiper-pagination {
-    display: none;
+
+  &__name {
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 10px 0;
+    color: var(--primary);
   }
-  .cases-list__slider {
-    max-width: initial;
-    margin: 50px auto -85px;
-  }
-  .cases-swiper {
-    overflow: visible;
-    overflow: initial;
-  }
-  .cases-card {
-    max-width: 355px;
-    margin-bottom: 32px;
-  }
-  .cases-card__name {
-    text-align: left;
-    margin: 30px 35px 0;
-  }
-  .cases-card__text {
-    font-size: 1rem;
+
+  &__text {
+    font-size: 0.9rem;
+    color: #49598d;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .cases-card {
-    max-width: 310px;
-  }
-  /* .cases-card:nth-child(3n -1) {
-    -webkit-transform: translateY(-40px);
-    transform: translateY(-40px);
-  } */
-  .cases-list__title {
-    padding-bottom: 30px;
+.swiper-pagination-bullet-active {
+  background-color: var(--green);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  height: 48px;
+  width: 48px;
+  background-color: var(--green);
+  border-radius: 50%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::after {
+    content: '';
   }
 }
 
-@media screen and (min-width: 1600px) {
-  .cases-card {
-    max-width: 410px;
-  }
+.swiper-button-prev {
+  left: 2px;
+  background-image: url(../../assets/icons/arrow-left.svg);
+}
+
+.swiper-button-next {
+  right: 2px;
+  background-image: url(../../assets/icons/arrow-right.svg);
+}
+
+.swiper-pagination-bullets {
+  bottom: 0 !important;
 }
