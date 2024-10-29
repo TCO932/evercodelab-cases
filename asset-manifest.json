@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/evercodelab-cases/static/css/main.f06f55ee.css",
-    "main.js": "/evercodelab-cases/static/js/main.a7222d9a.js",
+    "main.js": "/evercodelab-cases/static/js/main.f8ba617e.js",
     "static/js/453.cb3179b2.chunk.js": "/evercodelab-cases/static/js/453.cb3179b2.chunk.js",
     "static/media/Cases.svg": "/evercodelab-cases/static/media/Cases.440fd3fbeda61e613923.svg",
     "static/media/Medicine.svg": "/evercodelab-cases/static/media/Medicine.41f35a8ec7019703576194c2f24171d6.svg",
@@ -33,11 +33,11 @@
     "static/media/popup-check.svg": "/evercodelab-cases/static/media/popup-check.66a4038defe08a51531f95404ac5e9a0.svg",
     "static/media/arrow-left.svg": "/evercodelab-cases/static/media/arrow-left.00f9359f4acbae14cd97.svg",
     "main.f06f55ee.css.map": "/evercodelab-cases/static/css/main.f06f55ee.css.map",
-    "main.a7222d9a.js.map": "/evercodelab-cases/static/js/main.a7222d9a.js.map",
+    "main.f8ba617e.js.map": "/evercodelab-cases/static/js/main.f8ba617e.js.map",
     "453.cb3179b2.chunk.js.map": "/evercodelab-cases/static/js/453.cb3179b2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f06f55ee.css",
-    "static/js/main.a7222d9a.js"
+    "static/js/main.f8ba617e.js"
   ]
 }
