@@ -114,7 +114,6 @@
 
 .contact-btn {
   display: block;
-  outline: none;
   border: none;
   background-color: #8ac249;
   background-color: var(--green);
@@ -159,7 +158,6 @@
     background: url(../../assets/icons/close-popup.svg) no-repeat center;
     background-size: cover;
     border: none;
-    outline: none;
     cursor: pointer;
 
     &:hover {
@@ -185,7 +183,6 @@
     border-bottom: 2px solid #4862b1;
     font-size: 16px;
     font-family: 'Inter', serif;
-    outline: none;
     -webkit-appearance: none;
     padding: 0;
     border-radius: 0;

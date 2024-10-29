@@ -89,13 +89,14 @@ const Footer = () => {
             (menuShown ? ' nst-is-expanded' : ' nst-is-collapsed')
           }
         >
-          <div
+          <button
             onClick={menuClickHandler}
             className='footer__menu_handler nst-toggle'
+            type='button'
           >
             <h2 className='footer__handler_title'>Показать меню</h2>
             <div className='footer__handler_btn'>+</div>
-          </div>
+          </button>
           <ul
             className='footer__popup-menu nst-content items-list'
             style={{ maxHeight: menuHeight }}

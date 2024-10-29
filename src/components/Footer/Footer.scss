@@ -75,10 +75,13 @@
     padding-bottom: 13px;
     position: relative;
     cursor: pointer;
+
+    width: 100%;
+    color: inherit;
   }
 
   &__popup-menu-item {
-    padding: 10px 0;
+    padding: 10px;
 
     a {
       text-decoration: none;
