@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+], { basename: "/evercodelab-cases" });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
